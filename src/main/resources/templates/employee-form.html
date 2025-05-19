@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Form</title>
+</head>
+<body>
+    <h2 th:text="${employee.employeeId == null ? 'Add Employee' : 'Update Employee'}"></h2>
+    <form th:action="@{${employee.employeeId == null} ? '/employees/add' : '/employees/update/' + ${employee.employeeId}}" method="post" th:object="${employee}">
+        <label>Name:</label>
+        <input type="text" th:field="*{employeeName}" required/><br/>
+
+        <label>Department:</label>
+        <input type="text" th:field="*{employeeDepartment}" required/><br/>
+
+        <label>Salary:</label>
+        <input type="number" th:field="*{employeeSalary}" required/><br/>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+</head>
+<body>
+    <h2>Employee List</h2>
+    <a href="/employees/add">Add New Employee</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="emp : ${employees}">
+            <td th:text="${emp.employeeId}"></td>
+            <td th:text="${emp.employeeName}"></td>
+            <td th:text="${emp.employeeDepartment}"></td>
+            <td th:text="${emp.employeeSalary}"></td>
+            <td>
+                <a th:href="@{'/employees/edit/' + ${emp.employeeId}}">Edit</a> |
+                <a th:href="@{'/employees/delete/' + ${emp.employeeId}}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
